@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+	       
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.m,sap.ui.table,sap.ui.vbm"
+				data-sap-ui-theme="sap_goldreflection">
+		</script>
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+		
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+		<script>
+		
+				sap.ui.localResources("task3");
+				
+				
+				
+				var oShell = sap.ui.ux3.Shell({
+					
+					appTitle: "Task3",
+					showLogoutButton: false,
+					showSearchTool: false,
+					worksetItems: [
+					               	new sap.ui.ux3.NavigationItem("page1id",{
+					               		key: "page1",
+					               		text: "ORDERLIST"
+					               	}),
+					               	new sap.ui.ux3.NavigationItem("page2id",{
+					               		key: "page2",
+					               		text: "ASSETLIST"
+					               		
+					               	}),
+					               	new sap.ui.ux3.NavigationItem("page3id",{
+					               		key: "page3",
+					               		text: "MAP"
+					               		
+					               	})
+					               
+					               ],
+					               
+					               worksetItemSelected: function(e){
+					            	   this.removeAllContent();
+					            	   
+					            	   var selected = e.getParameter("key");
+					            	   var view= sap.ui.getCore().byId(selected);
+					            	   
+					            	   if(view == undefined)
+					            	   {
+					            		   console.log("new view rendring")
+					            		   view= new sap.ui.view({
+					            			   
+					            			   id: selected,
+					            			   viewName: "task3." + selected,
+					            			   type: sap.ui.core.mvc.ViewType.JS
+					            		   })
+					            	   }
+					            	   else{
+					            		   console.log("old view ");
+					            	   }
+					            	   this.addContent(view);
+					               },
+					               
+					               
+					               content: [new sap.ui.view({
+
+					            	   id: "viewid",
+					            	   viewName: "task3.page1",
+					            	   type: sap.ui.core.mvc.ViewType.JS
+					               })
+					               ]
+					               
+					               
+					               
+				});
+				
+				
+				
+				
+				
+				
+				
+		
+				
+				
+				
+				
+				
+				
+				
+
+				
+				oShell.placeAt("content");
+			
+				
+				
+				
+		</script>
+		
+		
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+			
+	</body>
+</html>
